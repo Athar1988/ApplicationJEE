@@ -9,6 +9,35 @@
 		<servlet-name>cs</servlet-name>
 		<url-pattern>*.php</url-pattern>
 	</servlet-mapping>
+	<!-- ********************************************** -->
+	<!-- AJOUTER POUR SECURITE -->
+	<security-constraint>
+		<!-- Liste des pages protégées -->
+		<web-resource-collection>
+			<web-resource-name>cs</web-resource-name>
+			<url-pattern>*.php</url-pattern>
+			<http-method>GET</http-method>
+			<http-method>POST</http-method>
+		</web-resource-collection>
+		<!-- Rôles des utilisateurs ayant le droit d'y accéder -->
+		<auth-constraint>
+			<role-name>manger</role-name>
+		</auth-constraint>
+	</security-constraint>
+	<login-config>
+		<!-- Type d'authentification Basic -->
+		 <auth-method>BASIC</auth-method> <realm-name>Authentification de securite 
+			role servlet</realm-name> 
+		<!-- Type d'authentification FORM -->
+		<!--<auth-method>FORM</auth-method>
+		<realm-name>Authentification de securite role servlet</realm-name>-->
+		<form-login-config>
+			<form-login-page>/login.html</form-login-page>
+			<form-error-page>/login.html</form-error-page>
+		</form-login-config>
+	</login-config>
+
+	<!-- ********************************************** -->
     <session-config>
         <session-timeout>
             30
